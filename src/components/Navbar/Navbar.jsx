@@ -16,26 +16,25 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { title: 'About', to: 'about' },
-    { title: 'Skills', to: 'skills' },
+    { title: 'Home', to: 'hero' },
     { title: 'Projects', to: 'projects' },
-    { title: 'Contact', to: 'contact' },
-    
+    { title: 'Ravion Lab', to: 'ravion-lab' },
+    { title: 'Skills', to: 'skills' },
+    { title: 'Contact', to: 'contact' }
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white shadow-lg' : 'bg-transparent'
-    }`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+      }`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link
-            to="home"
+            to="hero"
             smooth={true}
             duration={500}
-            className="text-2xl font-bold cursor-pointer"
+            className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400 cursor-pointer"
           >
-            D U
+            Dhrumin Upadhyay
           </Link>
 
           {/* Desktop Menu */}
@@ -46,7 +45,7 @@ const Navbar = () => {
                 to={item.to}
                 smooth={true}
                 duration={500}
-                className="hover:text-blue-600 cursor-pointer transition-colors"
+                className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
               >
                 {item.title}
               </Link>
@@ -55,23 +54,23 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-2xl"
+            className="md:hidden text-gray-400 hover:text-white focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <FaTimes /> : <FaBars />}
+            {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg">
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-gray-900/95 backdrop-blur-sm shadow-lg border-t border-gray-800">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 smooth={true}
                 duration={500}
-                className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="block px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 cursor-pointer"
                 onClick={() => setIsOpen(false)}
               >
                 {item.title}

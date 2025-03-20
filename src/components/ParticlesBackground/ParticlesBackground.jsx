@@ -8,57 +8,83 @@ const ParticlesBackground = () => {
   }, []);
 
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      options={{
-        background: {
-          color: {
-            value: 'transparent',
-          },
-        },
-        fpsLimit: 120,
-        particles: {
-          color: {
-            value: '#6366f1',
-          },
-          links: {
-            color: '#6366f1',
-            distance: 150,
-            enable: true,
-            opacity: 0.1,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            outModes: {
-              default: 'bounce',
+    <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-blue-950 to-indigo-950"></div>
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: false },
+          background: {
+            color: {
+              value: 'transparent',
             },
-            random: false,
-            speed: 0.5,
-            straight: false,
           },
-          number: {
-            density: {
+          fpsLimit: 60,
+          particles: {
+            color: {
+              value: "#ffffff"
+            },
+            links: {
+              color: "#ffffff",
+              distance: 150,
               enable: true,
-              area: 800,
+              opacity: 0.15,
+              width: 0.8,
             },
-            value: 80,
+            move: {
+              direction: "none",
+              enable: true,
+              outModes: {
+                default: "out",
+              },
+              random: false,
+              speed: 0.5,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                area: 1000,
+              },
+              value: 60,
+            },
+            opacity: {
+              value: 0.3,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              value: { min: 0.8, max: 1.5 },
+            }
           },
-          opacity: {
-            value: 0.5,
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "connect",
+              },
+              onClick: {
+                enable: false,
+              },
+              resize: true,
+            },
+            modes: {
+              connect: {
+                distance: 150,
+                radius: 200,
+                links: {
+                  opacity: 0.2
+                }
+              },
+            },
           },
-          shape: {
-            type: 'circle',
-          },
-          size: {
-            value: { min: 1, max: 5 },
-          },
-        },
-        detectRetina: true,
-      }}
-      className="absolute inset-0"
-    />
+          detectRetina: true,
+        }}
+        className="absolute inset-0"
+      />
+    </div>
   );
 };
 

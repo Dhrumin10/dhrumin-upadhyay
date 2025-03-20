@@ -1,137 +1,104 @@
-import React, { useState } from 'react';
-import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Get in Touch</h2>
-        
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
-              <p className="text-gray-600 mb-6">
-                Feel free to reach out! I'm always open to discussing new projects,
-                creative ideas, or opportunities to be part of your visions.
-              </p>
-              
-              <div className="space-y-4">
-                <a
-                  href="https://www.linkedin.com/in/dhrumin-upadhyay-98b021287/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-blue-600"
-                >
-                  <FaLinkedin className="mr-2" />
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/Dhrumin007-creator
-"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-blue-600"
-                >
-                  <FaGithub className="mr-2" />
-                  GitHub
-                </a>
-                <a
-                  href="mailto:email@example.com"
-                  className="flex items-center text-gray-600 hover:text-blue-600"
-                >
-                  <FaEnvelope className="mr-2" />
-                  upadhyaydhrumin224@gmail.com
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 text-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
+              Get in Touch
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+          </p>
+        </div>
 
-                </a>
+        <div
+          ref={ref}
+          className="max-w-3xl mx-auto"
+        >
+          <div
+            className="bg-gray-800/70 p-8 rounded-lg shadow-md backdrop-blur-sm border border-gray-700"
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.8s ease, transform 0.8s ease"
+            }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
+
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 p-3 rounded-full bg-indigo-900/30">
+                  <FaMapMarkerAlt className="text-indigo-400 text-xl" />
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1 text-white">Location</h4>
+                  <p className="text-gray-400">Ahmedabad, Gujarat, India</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 p-3 rounded-full bg-indigo-900/30">
+                  <FaEnvelope className="text-indigo-400 text-xl" />
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1 text-white">Email</h4>
+                  <a
+                    href="mailto:upadhyaydhrumin224@gmail.com"
+                    className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                  >
+                    upadhyaydhrumin224@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 p-3 rounded-full bg-indigo-900/30">
+                  <FaPhone className="text-indigo-400 text-xl" />
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1 text-white">Phone</h4>
+                  <a
+                    href="tel:+911234567890"
+                    className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                  >
+                    +91 6355917400
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <h4 className="font-semibold mb-3 text-white">Connect</h4>
+                <div className="flex space-x-4">
+                  <a
+                    href="https://www.linkedin.com/in/dhrumin-upadhyay-98b021287/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                  >
+                    <FaLinkedin className="text-2xl" />
+                  </a>
+                  <a
+                    href="https://github.com/Dhrumin007-creator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                  >
+                    <FaGithub className="text-2xl" />
+                  </a>
+                </div>
               </div>
             </div>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md
-                    focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md
-                    focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="4"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md
-                    focus:ring-blue-500 focus:border-blue-500"
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white px-6 py-3 rounded-md
-                  hover:bg-blue-700 transition-colors duration-300"
-              >
-                Send Message
-              </button>
-            </form>
           </div>
         </div>
       </div>
